@@ -46,9 +46,9 @@ ROUND(AVG( CAST(tf.amount AS NUMERIC)),2) AS averageAmountPerFlight
 FROM tickets AS t
 JOIN ticket_flights AS tf
 ON t.ticket_no = tf.ticket_no
-WHERE t.passenger_name IS NOT NULL -- Filer passengers without names
+WHERE t.passenger_name IS NOT NULL -- Filter passengers without names
 AND TRIM(t.passenger_name) LIKE '%_%'
-AND tf.amount BETWEEN 50 AND 5000 -- Filer amount between 50 AND 5000
+AND tf.amount BETWEEN 50 AND 5000 -- Filter amount between 50 AND 5000
 GROUP BY UPPER(t.passenger_name) 
 HAVING COUNT(t.ticket_no) >= 1 -- passengers with more that 1 ticket
 LIMIT 100;
